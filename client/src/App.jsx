@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { BrowserRouter,Routes, Route } from "react-router-dom";
+import Header from './components/Header';
+import About from './pages/About';
+import GalleryPage from './pages/Gallery';
+import { HomePage } from './pages/Home';
+import PostsPage from './pages/PostsPage';
+import { NotFoundPage } from './pages/NotFoundPage';
+import Forms from "./components/Forms"
+// import ServerForms from './components/ServerForms'
+//import Comments from './components/Comments';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
-function App() {
-  const [count, setCount] = useState(0)
+
+export default function App(){
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <BrowserRouter>
+    
+    <Header/>
+    <Navbar/>
+  
+    
+    <Routes>
+      <Route path='/posts' element={<Forms/>}/>
+      <Route path="/posts" element={<PostsPage />} />
+      <Route path='/about' element={<About />} />
+      <Route path="/gallery" element={<GalleryPage />} />
+      <Route path='/' element={<HomePage></HomePage>}/>
+      <Route path='*' element= {<NotFoundPage/>} />
+    
 
-export default App
+      {/* this is a dynamic route because each user need to see their own data */}
+      {/* <Route path="/profile/:username" element={<UserProfile/>} >
+        <Route path="comments" element={<Comments/>} /> </Route> */}
+
+    </Routes>
+    
+    
+    <Footer/>
+    </BrowserRouter>
+    
+  );
+}

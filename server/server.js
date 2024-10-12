@@ -43,9 +43,7 @@ app.get("/locations", async (req, res) => {
     `);
     //we parse the response into json
     console.log(locationsData);
-    //this is the res without a status code
-    // res.json(biscuitsData.rows);
-    //you can also add a status code in the try
+   
     res.status(200).json(locationsData.rows);
   } catch (error) {
     //our server will give us this error, if there is a problem with the code in try
@@ -70,12 +68,12 @@ app.get("/locations-categories", async (req, res) => {
   }
 });
 
-//To create a new endpoint
+
 app.post("/add-location", async (req, res) => {
   try {
     const { title, description, travel_tip, image_src, category_id } = req.body;
 
-    // Insert the new location into the locations table
+    // adding new location into the locations table
     const newLocation = await db.query(
       `INSERT INTO locations (title, description, travel_tip, image_src)
        VALUES ($1, $2, $3, $4);`,
