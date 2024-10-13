@@ -71,7 +71,7 @@ app.get("/locations-categories", async (req, res) => {
 
 app.post("/add-location", async (req, res) => {
   try {
-    const { title, description, travel_tip, image_src, category_id } = req.body;
+    const { username,title, description, travel_tip, image_src, category_id } = req.body;
 
     // adding new location into the locations table
     const newLocation = await db.query(

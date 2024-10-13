@@ -12,22 +12,22 @@ export default function TravelForm() {
   });
 
   const [categories, setCategories] = useState([]);
-  const [locations, setLocations] = useState([]);
+//   const [locations, setLocations] = useState([]);
 
-  // Simulate fetching categories and locations from server using the mock data
+  // fetching from my json
   useEffect(() => {
     setCategories(locationData.categories); 
-    setLocations(locationData.locations);  
+    // setLocations(locationData.locations);  
   }, []);
 
-  // Handle form submission
+  
   function handleSubmit(event) {
     event.preventDefault();
     console.log("Form submitted with values: ", formValues);
     alert("Form submitted successfully!");
   }
 
-  // Handle input changes
+  
   function handleInputChange(event) {
     setFormValues({
       ...formValues,
@@ -37,7 +37,7 @@ export default function TravelForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* Name Input */}
+      
       <label htmlFor="name">Your Name</label>
       <input
         type="text"
@@ -49,7 +49,7 @@ export default function TravelForm() {
         onChange={handleInputChange}
       />
 
-      {/* Post Title Input */}
+      
       <label htmlFor="title">Post Title</label>
       <input
         type="text"
@@ -61,7 +61,7 @@ export default function TravelForm() {
         onChange={handleInputChange}
       />
 
-      {/* Post Description Input */}
+     
       <label htmlFor="description">Post Description</label>
       <textarea
         id="description"
@@ -72,7 +72,7 @@ export default function TravelForm() {
         onChange={handleInputChange}
       ></textarea>
 
-      {/* Travel Tip Input */}
+      
       <label htmlFor="travel_tip">Travel Tip</label>
       <input
         type="text"
@@ -83,7 +83,7 @@ export default function TravelForm() {
         onChange={handleInputChange}
       />
 
-      {/* Image URL Input */}
+     
       <label htmlFor="image_src">Image URL</label>
       <input
         type="url"
@@ -94,7 +94,7 @@ export default function TravelForm() {
         onChange={handleInputChange}
       />
 
-      {/* Category Selection */}
+      
       <label htmlFor="category">Select a Category</label>
       <select
         id="category"
