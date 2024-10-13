@@ -1,8 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 
 export default function Post({ post }) {
-  const {id} = useParams();  // This fetches the postID from the URL if you are using dynamic routes.
-  const navigate = useNavigate();
+  const {id} = useParams(); 
 
   // Function to delete a post
   async function handleDelete() {
@@ -15,7 +14,7 @@ export default function Post({ post }) {
 
         if (response.ok) {
           alert("Post deleted successfully!");
-          navigate("/posts");  // Redirect back to the posts page after deletion
+          navigate("/posts"); 
         } else {
           console.error("Failed to delete post");
         }

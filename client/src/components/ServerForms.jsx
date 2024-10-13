@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export default function NewForm() {
@@ -11,20 +12,21 @@ export default function NewForm() {
     image_src: "",
   });
 
-  const [newpost, setNewpost] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
 
   // Fetch categories from the server
   useEffect(() => {
-    async function fetchNewpost() {
+    async function fetchLocationCategories() {
       try {
-        const response = await fetch("http://localhost:8080/categories");
+        const response = await fetch("http://localhost:8080/locations-categories");
         const data = await response.json();
-        setNewpost(data);
+        setCategories(data);
       } catch (error) {
         console.error("Error fetching categories:", error);
       }
     }
-    fetchNewpost();
+    fetchLocationCategories();
   }, []);
 
   // handle form submission
@@ -40,6 +42,7 @@ export default function NewForm() {
       });
       if (response.ok) {
         alert("Form submitted successfully!");
+        navigate("/posts");
       } else {
         alert("Error submitting form");
       }
@@ -56,6 +59,7 @@ export default function NewForm() {
   }
 
   return (
+    <div className="new-form">
     <form onSubmit={handleSubmit}>
       <label htmlFor="name">Your Name</label>
       <input
@@ -113,19 +117,19 @@ export default function NewForm() {
       <select
         id="category"
         name="category"
-        required
+        // required
         value={formValues.category}
         onChange={handleInputChange}
       >
         <option value="">--Select a Category--</option>
-        {newpost.map((category) => (
-          <option key={category.id} value={category.id}>
+        {categories.map((category,index) => (
+          <option key={category.id || index} value={category.id}>
             {category.category_name}
           </option>
         ))}
       </select>
 
       <button type="submit">Add Post</button>
-    </form>
+    </form> </div>
   );
 }
