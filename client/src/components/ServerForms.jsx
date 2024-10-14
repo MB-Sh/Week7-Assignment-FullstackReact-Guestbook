@@ -18,7 +18,7 @@ export default function NewForm() {
   useEffect(() => {
     async function fetchLocationCategories() {
       try {
-        const response = await fetch("https://week7-assignment-fullstackreact-guestbook.onrender.com");
+        const response = await fetch("https://week7-assignment-fullstackreact-guestbook.onrender.com/locations-categories");
         const data = await response.json();
         setCategories(data);
       } catch (error) {
@@ -32,7 +32,7 @@ export default function NewForm() {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      const response = await fetch("https://week7-assignment-fullstackreact-guestbook.onrender.com", {
+      const response = await fetch("https://week7-assignment-fullstackreact-guestbook.onrender.com/add-location", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

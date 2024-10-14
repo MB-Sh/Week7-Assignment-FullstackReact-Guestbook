@@ -10,7 +10,7 @@ export default function PostsPage() {
     // fetch post
     async function getPost() {
         try {
-            const response = await fetch( "https://week7-assignment-fullstackreact-guestbook.onrender.com", {
+            const response = await fetch( "https://week7-assignment-fullstackreact-guestbook.onrender.com/locations-categories", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export default function PostsPage() {
     const confirmDelete = window.confirm("Are you sure you want to delete this post?");
     if (confirmDelete) {
       try {
-        const response = await fetch("https://week7-assignment-fullstackreact-guestbook.onrender.com", {
+        const response = await fetch("https://week7-assignment-fullstackreact-guestbook.onrender.com/delete-location", {
           method: "DELETE",
         });
         if (response.ok) {
