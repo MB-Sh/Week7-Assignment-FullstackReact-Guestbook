@@ -52,7 +52,7 @@ export default function PostsPage() {
     return (
         <div>
         <h1>Posts</h1>
-        <Link to="/add-location">
+        <Link to="/add-post">
         <button style={{ marginBottom: '20px' }}>Add New Post</button>
       </Link>
         {posts.length > 0 ? (
