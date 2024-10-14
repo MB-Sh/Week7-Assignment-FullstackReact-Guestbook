@@ -3,7 +3,6 @@ import locationData from "../lib/locationData.json";
 
 export default function TravelForm() {
   const [formValues, setFormValues] = useState({
-    name: "",
     title: "",
     description: "",
     category: "",

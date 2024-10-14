@@ -10,7 +10,7 @@ export default function PostsPage() {
     // fetch post
     async function getPost() {
         try {
-            const response = await fetch( "http://localhost:8080/locations-categories", {
+            const response = await fetch( "https://week7-assignment-fullstackreact-guestbook.onrender.com", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -27,12 +27,32 @@ export default function PostsPage() {
         getPost();
       }, []);
 
+      // to delete post deletion
+    async function handleDelete(postId) {
+    const confirmDelete = window.confirm("Are you sure you want to delete this post?");
+    if (confirmDelete) {
+      try {
+        const response = await fetch("https://week7-assignment-fullstackreact-guestbook.onrender.com", {
+          method: "DELETE",
+        });
+        if (response.ok) {
+          alert("Post deleted successfully!");
+          setPost(posts.filter((post) => post.id !== postId));
+        } else {
+          alert("Error deleting post");
+        }
+      } catch (error) {
+        console.error("Error deleting post:", error);
+      }
+    }
+  }
+
 
     
     return (
         <div>
         <h1>Posts</h1>
-        <Link to="/add-post">
+        <Link to="/add-location">
         <button style={{ marginBottom: '20px' }}>Add New Post</button>
       </Link>
         {posts.length > 0 ? (
@@ -49,6 +69,7 @@ export default function PostsPage() {
                 />
               )}
               <p><strong>Category:</strong> {post.catergory_name}</p>
+              <button onClick={() => handleDelete(post.id)}>Delete Post</button>
             </div>
           ))
         ) : (

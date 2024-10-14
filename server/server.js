@@ -71,12 +71,12 @@ app.get("/locations-categories", async (req, res) => {
 
 app.post("/add-location", async (req, res) => {
   try {
-    const { username,title, description, travel_tip, image_src, category_id } = req.body;
+    const { title, description, travel_tip, image_src, category_id } = req.body;
 
     // adding new location into the locations table
     const newLocation = await db.query(
       `INSERT INTO locations (title, description, travel_tip, image_src)
-       VALUES ($1, $2, $3, $4);`,
+       VALUES ($1, $2, $3, $4)RETURNING *;`,
       [title, description, travel_tip, image_src]
     );
     const location_id = newLocation.rows[0].id;

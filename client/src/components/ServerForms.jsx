@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function NewForm() {
   const [formValues, setFormValues] = useState({
-    username: "",
     title: "",
     description: "",
     category: "",
@@ -61,17 +60,6 @@ export default function NewForm() {
   return (
     <div className="new-form">
     <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Your Name</label>
-      <input
-        type="text"
-        id="username"
-        name="username"
-        placeholder="Enter your name"
-        required
-        value={formValues.username}
-        onChange={handleInputChange}
-      />
-
       <label htmlFor="title">Post Title</label>
       <input
         type="text"
@@ -122,9 +110,9 @@ export default function NewForm() {
         onChange={handleInputChange}
       >
         <option value="">--Select a Category--</option>
-        {categories.map((category,index) => (
-          <option key={category.id || index} value={category.id}>
-            {category.category_name}
+        {Array.isArray(categories) && categories.map((category, index) => (
+        <option key={category.id || index} value={category.id}>
+      {category.category_name}
           </option>
         ))}
       </select>
